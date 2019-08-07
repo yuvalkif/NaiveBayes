@@ -65,7 +65,7 @@ class NaiveBayseAlgorithm:
 
         for colname in colnames:
             uniqueValues = list(dataset[colname].unique())
-            p_params_list.append(1/len(uniqueValues))
+            p_params_list.append(float(1/len(uniqueValues)))
             valuesdict = dict()
 
             for classvalue in classvalues:
@@ -119,13 +119,13 @@ class NaiveBayseAlgorithm:
 
             for att_value,att_name in zip(row,self.attributes):
                 try:
-                    m_estimate_score = (self.colsDict[att_name][str(att_value)+'_'+str(c)] +self.m_param*self.p_param[k])/(self.classdict[c]+self.m_param)
+
+                    m_estimate_score = float((self.colsDict[att_name][str(att_value)+'_'+str(c)] +float(self.m_param)*float(self.p_param[k]))/(self.classdict[c]+self.m_param))
                     k=k+1
                     att_scores.append(m_estimate_score)
                 except KeyError:
-                    att_scores.append(0)
-                    
-            record_class_score = self.classdict[c]/self.totalRows#  p(c)
+                    att_scores.append(float(1/self.totalRows))
+            record_class_score = float(self.classdict[c])/float(self.totalRows)#  p(c)
 
             for att_score in att_scores:#creating p(record|c)
                 record_class_score = record_class_score*att_score
@@ -144,7 +144,6 @@ class NaiveBayseAlgorithm:
             if chosen_class < classes_scores[i]:
                 chosen_class = classes_scores[i]
                 chosen_idx = i
-
         return self.classes[chosen_idx]
 
 
