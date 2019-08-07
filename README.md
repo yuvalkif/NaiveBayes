@@ -6,7 +6,7 @@ Files:
 			
 				2. getEqualWidthBins(numofbins)										
 
-				3. getNormalizedValue(value , min , max)												
+				3. getNormalizedValue(value , min , max)										
 				4. fillDatasetNANumerical(dataset)												
 
 
